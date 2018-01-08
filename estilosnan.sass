@@ -1,44 +1,55 @@
+#menu_principal
+	padding: 5px 0
+	background: #4e8dbb
+	top: 0
+#menu_principal_nav
+	position: absolute
+	height: 100vh
+	background: rgba(232, 232, 232, 0.9)
+	// background: red
+	z-index: 10
+	left: -100%
+	transition: 0.5s
+	max-width: 100%
+	&.active
+		left: 0%
 #inicio_session
 	.row
 		margin-bottom: 10px
 	.icon-login
 		width: 170px
 		margin: 20px 0 20px 0px
-body
-	.container
-		margin-top: 20px
-body#panel_entro	
-	ul.nav
-		margin-top: 20px
-		span
-			margin-right: 10px
+ul#menu_principal_nav
+	
+	span
+		margin-right: 10px
+	> div
 		> div
-			> div
-				border-radius: 10px
-				padding: 10px
-				margin-top: 10px
-			a
-				color: white
-				font-weight: bold
-				text-transform: uppercase
-			&:nth-child(1)
-				div
-					background: rgba(31, 145, 181, 0.6)
-			&:nth-child(2)
-				div
-					background: #59b1a1
-			&:nth-child(3)
-				div
-					background: rgba(31, 144, 46, 0.6)
-			&:nth-child(4)
-				div
-					background: #ee6360
-			&:nth-child(5)
-				div
-					background: #4ebb85
-			&:nth-child(6)
-				div
-					background: #4e8dbb
+			border-radius: 10px
+			padding: 10px
+			margin-top: 10px
+		a
+			color: white
+			font-weight: bold
+			text-transform: uppercase
+		&:nth-child(1)
+			div
+				background: rgba(31, 145, 181, 0.6)
+		&:nth-child(2)
+			div
+				background: #59b1a1
+		&:nth-child(3)
+			div
+				background: rgba(31, 144, 46, 0.6)
+		&:nth-child(4)
+			div
+				background: #ee6360
+		&:nth-child(5)
+			div
+				background: #4ebb85
+		&:nth-child(6)
+			div
+				background: #4e8dbb
 body#crea_cabecera
 	margin-bottom: 50px
 body#captura_servicios
@@ -62,9 +73,4 @@ body#print_excel_servicio
 		img
 			max-width: 200px
 			height: auto
-		a
-			
-			
-		
-
 //#A3E4D7		

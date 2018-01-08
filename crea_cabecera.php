@@ -1,5 +1,6 @@
 <?php // session_start();?>
-<?php // if($_SESSION['nomuser'] == "") header('Location: index.php');?>
+<?php // if($_SESSION['nomuser'] == "") header('Location: index.php');
+$cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; ?>
 <?php include "conex.php";
 // echo "<pre>"; print_r($_SESSION); echo "</pre>";
 ?>
@@ -7,7 +8,7 @@
 <html lang="es">
 	<head>
 		<?php include "header.php";?>
-	</head>  
+	</head>
 
 	<body id="crea_cabecera">
 		<div class="container">
@@ -28,7 +29,7 @@
 
 				<label for="contratista">Coordinador </label>
 				<div>
-					<input value="<?php print $_SESSION[cod_contratista]?>" <?php if($_SESSION["cod_contratista"]) echo "readonly"; ?> type="number" name="busca_contratista" id="busca_contratista" class="form-control"></input>
+					<input value="<?php print $cod_contratista?>" <?php if($cod_contratista) echo "readonly"; ?> type="number" name="busca_contratista" id="busca_contratista" class="form-control"></input>
 					<input data-validar="false" readonly class="form-control" id = "contratista" name="contratista" placeholder="Digite codigo del contratista"/> 
 				</div>
 
@@ -40,7 +41,7 @@
 							if ($_SESSION["cod_contratista"]!="") {
 								echo "<option value=''>Seleccione</option>";
 								$sql = "SELECT codigo, nombre FROM cuadrillas
-								where cod_contratista=$_SESSION[cod_contratista]";
+								where cod_contratista=$cod_contratista";
 								$resulta = mysqli_query($conexion, $sql);
 								while($data = mysqli_fetch_array($resulta)) {
 									echo "<option value='$data[codigo]'>".$data["nombre"]."</option>";
