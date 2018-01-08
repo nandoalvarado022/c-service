@@ -1,0 +1,90 @@
+form {
+  /* Just to center the form on the page */
+  /*margin: 0 auto; */
+  margin-left: 100px;
+  margin-top: 10px;
+  margin-right: 120px;
+  margin-bottom: 650px;
+  width: 1000px;
+  height: 500px;
+
+  /* To see the limits of the form */
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+}
+
+div + div {
+  margin-top: 1em;
+}
+
+label {
+  /* To make sure that all label have the same size and are properly align */
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+input {
+  /* To make sure that all text field have the same font settings
+     By default, textarea are set with a monospace font */
+  font: 1em sans-serif;
+  font-size: 12px;
+
+  /* To give the same size to all text field */
+    width: 100px;
+
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+
+  /* To harmonize the look & feel of text field border */
+  border: 1px solid #999;
+}
+
+textarea {
+  /* To make sure that all text field have the same font settings
+     By default, textarea are set with a monospace font */
+  /*font: 1em sans-serif;
+
+  /* To give the same size to all text field */
+  /*  width: 300px; */
+
+  font-family: arial, verdana, ms sans serif;
+  font-size: 8pt;
+
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+
+   width: 200px;
+  /* To harmonize the look & feel of text field border */
+  border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+  /* To give a little highligh on active elements */
+  border-color: #000;
+  background-color: #FFEBEE;
+}
+
+textarea {
+  /* To properly align multiline text field with their label */
+  vertical-align: top;
+
+  /* To give enough room to type some text */
+  height: 5em;
+
+  /* To allow users to resize any textarea vertically
+     It works only on Chrome, Firefox and Safari */
+  resize: vertical;
+}
+
+.button {
+  /* To position the buttons to the same position of the text fields */
+  padding-left: 90px; /* same size as the label elements */
+}
+
+button {
+  /* This extra magin represent the same space as the space between
+     the labels and their text fields */
+  margin-left: .5em;
+}

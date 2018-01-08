@@ -1,0 +1,52 @@
+body {
+    background-color: #FFF9C4;
+}
+
+
+h3 {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+h4 {
+    margin-top:  0px;
+    font-size:   14px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+h2 {
+    color: #7986CB;
+    margin-left: 500px;
+    margin-top:  0px;
+}
+
+.floating-box {
+    float: left;
+    width: 1350px;
+    height: 550px;
+    margin: 0px;
+    border: 2px solid #A9CCE3;
+}
+
+.after-box {
+    clear: left;
+    border: 3px solid red;
+}
+
+.polig {
+width:200px;
+height:200px;
+background:#444444;
+font-family:arial;
+font-weight:bold;
+color:#EEEEEE;
+}
+
+#contenedor	{
+	position: relative;
+	width: 700px;
+	height: 356px;
+	text-align: center;
+	margin: auto;
+
+}

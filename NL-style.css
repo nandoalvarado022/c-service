@@ -1,0 +1,42 @@
+.tbmain{ 
+ /* Changes on the form */
+ background: url(style3_bg.gif) #00CAF8 repeat-h !important; 
+ height:200px;
+ color:#333333;
+ border: 1px #AAAAAA solid;
+}
+.left{
+	color: #333333 !important;
+	font-family: Arial, helvetica, sans-serif;
+	font-size: 14px !important;
+}
+td.left {
+   font-family: Arial, helvetica, sans-serif;
+   font-size: 14px;
+   font-weight: bold;
+   color:#333333;
+   text-align: right;
+}
+
+.text{
+   font-family: Arial, helvetica, sans-serif;
+   font-size: 14px;
+   font-weight: normal;
+   border: 1px;
+   background:url(style2_txt_bg.gif) bottom repeat-x;
+}
+
+.textsm{
+   font-family: Arial, helvetica, sans-serif;
+   font-size: 10px;
+   font-weight: normal;
+}
+
+.btn{
+   font-family: Arial, helvetica, sans-serif;
+   font-size: 14px;
+   font-weight:normal;
+   color:#333333;
+   border:1px #333333 solid;
+   background: #00CAF8;
+}

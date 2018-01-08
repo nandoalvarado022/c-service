@@ -1,0 +1,58 @@
+#inicio_session .row {
+  margin-bottom: 10px; }
+#inicio_session .icon-login {
+  width: 170px;
+  margin: 20px 0 20px 0px; }
+
+body .container {
+  margin-top: 20px; }
+
+body#panel_entro ul.nav {
+  margin-top: 20px; }
+  body#panel_entro ul.nav span {
+    margin-right: 10px; }
+  body#panel_entro ul.nav > div > div {
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px; }
+  body#panel_entro ul.nav > div a {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase; }
+  body#panel_entro ul.nav > div:nth-child(1) div {
+    background: rgba(31, 145, 181, 0.6); }
+  body#panel_entro ul.nav > div:nth-child(2) div {
+    background: #59b1a1; }
+  body#panel_entro ul.nav > div:nth-child(3) div {
+    background: rgba(31, 144, 46, 0.6); }
+  body#panel_entro ul.nav > div:nth-child(4) div {
+    background: #ee6360; }
+  body#panel_entro ul.nav > div:nth-child(5) div {
+    background: #4ebb85; }
+  body#panel_entro ul.nav > div:nth-child(6) div {
+    background: #4e8dbb; }
+
+body#crea_cabecera {
+  margin-bottom: 50px; }
+
+body#captura_servicios .preview img {
+  max-width: 140px; }
+
+body#captura_servicios #table_wrapper, body#print_excel_servicio #table_wrapper {
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  border: 0; }
+
+body#print_excel_servicio {
+  margin-bottom: 50px; }
+  body#print_excel_servicio .descargar_archivo {
+    margin: 0 auto;
+    display: block;
+    width: 180px; }
+  body#print_excel_servicio input[type='file'] {
+    display: none; }
+  body#print_excel_servicio .preview img {
+    max-width: 200px;
+    height: auto; }
+
+/*# sourceMappingURL=estilosnan.css.map */
