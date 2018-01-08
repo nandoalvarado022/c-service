@@ -10,7 +10,8 @@
   z-index: 10;
   left: -100%;
   transition: 0.5s;
-  max-width: 100%; }
+  max-width: 100%;
+  width: 100%; }
   #menu_principal_nav.active {
     left: 0%; }
 
