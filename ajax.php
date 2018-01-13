@@ -137,7 +137,7 @@ switch ($causa) {
 		on item_hijo.codigo=item_padre.codigo
 		";
 		if($_REQUEST["cmb_empresa_cliente"]!="") $sql.="where item_hijo.codigo_cliente=$_REQUEST[cmb_empresa_cliente]";
-		$sql.=" order by modify desc";
+		$sql.=" order by modified desc";
 		$resulta = mysqli_query($conexion, $sql);
 		$rows = mysqli_num_rows($resulta);
 		$rows = array();
