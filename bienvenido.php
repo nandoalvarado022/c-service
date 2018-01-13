@@ -3,16 +3,17 @@
 	if($_SESSION['nomuser']=="") header('Location: /softwareydiseno?error=Debe iniciar sessión.');?>
 	<div class="row" id="menu_principal">
 		<div class="col-xs-4" style="color: white;"><b>C-SERVICES</b></div>
-		<div class="col-xs-5">
+		<div class="col-xs-4">
 			
 			<span class="text-uppercase" style="color: white;">
-				<span class="glyphicon glyphicon-user"></span>
-				<?php print $_SESSION['nomuser']?>
+				<span style="font-size: 20px" class="glyphicon glyphicon-user"></span>
+				<span class="texto"><?php print $_SESSION['nomuser']?></span>
 			</span>
 		</div>
 		
-		<div class="col-xs-3" style="color: white;" onclick="javascript: $('#menu_principal_nav').toggleClass('active')">
-			MENU
+		<div class="col-xs-4" style="cursor: pointer; color: white;" onclick="javascript: $('#menu_principal_nav').toggleClass('active')">
+			<span style="font-size: 20px" class="glyphicon glyphicon-align-justify"></span>
+			<span class="texto desktop">MENU</span>
 		</div>
 	</div>
 
@@ -35,7 +36,7 @@
 				<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
 					<li>
 						<span class="glyphicon glyphicon-user"></span>
-						<a href="crea_clientes.php">Creación de Servicio/Proyecto</a>
+						<a href="crea_clientes.php">Creación de Servicio</a>
 					</li>
 				</div>
 			</div>
@@ -47,7 +48,7 @@
 				<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
 					<li>
 						<span class="glyphicon glyphicon-flag"></span>
-						<a href="crea_cuadrilla.php">Creacion De Cuadrillas</a>
+						<a href="crea_cuadrilla.php">Creación De Cuadrillas</a>
 					</li>
 				</div>
 			</div>
@@ -60,6 +61,15 @@
 					<li>
 						<span class="glyphicon glyphicon-folder-open"></span>
 						<a href="crea_usuarios.php">Creación de Coordinador</a>
+					</li>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
+					<li>
+						<span class="glyphicon glyphicon glyphicon-cog"></span>
+						<a href="admin_herramientas.php">Administrar Herramientas</a>
 					</li>
 				</div>
 			</div>

@@ -1,19 +1,46 @@
+$movil: "max-width: 480px"
+$desktop: "min-width: 480px"
+.desktop
+	@media ($movil)
+		display: none !important	
+.container
+	margin-top: 30px
+#admin_herramientas
+	#modalEditarItem
+		.modal-body
+			> div
+				margin-top: 10px
+				
+				select
+					
 #menu_principal
-	padding: 5px 0
+	height: 32px
+	padding: 5px 0 2px
 	background: #4e8dbb
 	top: 0
+	position: fixed
+	width: 100%
+	left: 0px
+	margin: 0 auto
+	z-index: 10
+	.texto
+		position: relative
+		top: -4px
+		left: 10px
 #menu_principal_nav
-	position: absolute
+	position: fixed
 	height: 100vh
-	background: rgba(232, 232, 232, 0.9)
+	
 	// background: red
 	z-index: 10
 	left: -100%
 	transition: 0.5s
 	max-width: 100%
 	width: 100%
+	top: 32px
 	&.active
 		left: 0%
+		background: rgba(232, 232, 232, 0.9)
 #inicio_session
 	.row
 		margin-bottom: 10px
@@ -33,7 +60,7 @@ ul#menu_principal_nav
 			color: white
 			font-weight: bold
 			text-transform: uppercase
-		&:nth-child(1)
+		&:nth-child(1), &:nth-child(7)
 			div
 				background: rgba(31, 145, 181, 0.6)
 		&:nth-child(2)
@@ -53,6 +80,10 @@ ul#menu_principal_nav
 				background: #4e8dbb
 body#crea_cabecera
 	margin-bottom: 50px
+	#contratista, #cliente
+		border: none
+		border-radius: 0
+		margin: -2px auto 20px
 body#captura_servicios
 	.preview 
 		img

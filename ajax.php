@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 ini_set( 'upload_max_size' , '12M' );
 ini_set( 'post_max_size', '13M');
 ini_set( 'memory_limit', '15M' );
@@ -14,7 +15,138 @@ foreach($_POST as $nombre_campo => $valor){
    	eval($asignacion);
 }
 
+function cmb_item_padre($codigo_padre){
+	global $conexion;
+	$sql="SELECT *
+	from item_padre";
+	$resulta = mysqli_query($conexion, $sql);
+	$rows = mysqli_num_rows($resulta);
+	if ($rows > 0) {
+		while($row = mysqli_fetch_assoc($resulta)) {
+			$selected=($codigo_padre==$row["codigo"]) ? "selected" : "";
+			
+			$res.="<option $selected value='".$row["codigo"]."'>".$row["nombre"]."</option>";
+		}	
+	}
+	return $res;
+}
+
+function cmb_empresa_cliente($cec){
+	// cec: codigo empresa cliente
+	global $conexion;
+	$sql="SELECT *
+	from clientes";
+	$resulta = mysqli_query($conexion, $sql);
+	$rows = mysqli_num_rows($resulta);
+	$res="";
+	if ($rows > 0) {
+		while($row = mysqli_fetch_assoc($resulta)) {
+			$selected=($cec==$row["codigo"]) ? "selected" : "";
+			
+			$res.="<option $selected value='".$row["codigo"]."'>".$row["nombre"]."</option>";
+		}	
+	}
+	return $res;
+}
+
 switch ($causa) {
+
+	case 'editarItemCon':
+		if($_REQUEST["codigo_item"]!=""){
+			$sql="UPDATE item_hijo
+			set nombre='$_REQUEST[nombre]', unidad='$_REQUEST[unidad]', vlrunitario=$_REQUEST[vlrunitario], codigo=$_REQUEST[codigo_padre], codigo_cliente=$_REQUEST[cec]
+			where id=$_REQUEST[codigo_item]";
+		} else{
+			// codigo: codigo del padre
+			$sql="INSERT into item_hijo(codigo, nombre, unidad, vlrunitario, codigo_cliente) values($_REQUEST[codigo_padre], '$_REQUEST[nombre]', '$_REQUEST[unidad]', $_REQUEST[vlrunitario], $_REQUEST[cec])";
+			// echo $sql;
+		}
+		$resulta = mysqli_query($conexion, $sql);
+	break;
+
+	case 'cmb_empresa_cliente': // select de empresa cliente
+		$sql="select * from clientes";
+		$resulta = mysqli_query($conexion, $sql);
+		$rows = mysqli_num_rows($resulta);
+		if ($rows > 0) {
+			echo "<option value=''>Seleccione</option>";
+			while($row = mysqli_fetch_assoc($resulta)) {
+				echo "<option value='".$row["codigo"]."'>".$row["nombre"]."</option>";	
+			}	
+		}
+		
+	
+
+	break;
+
+	case 'editar_item_listado_herramientas':
+		$unidades=array("grados","h","hday","hdof","hh ing","hh tec","kg","m2","m3","mes","ml","un","volt");
+		$_REQUEST["vlrunitario"]=isset($_REQUEST["vlrunitario"]) ? $_REQUEST["vlrunitario"] : "";
+		$codigo_padre=isset($_REQUEST["codigo_padre"]) ? $_REQUEST["codigo_padre"] : "";
+		$cec=isset($_REQUEST["cec"]) ? $_REQUEST["cec"] : "";
+		echo '
+		<div class="input-group">
+			<span class="input-group-addon">Precio</span>
+			<input type="text" class="form-control" id="inpPrecio" value="'.$_REQUEST["vlrunitario"].'">
+		</div>
+
+		<div class="input-group">
+			<span class="input-group-addon">Empresa</span>
+			
+			<select id="cmb_empresa_cliente" class="form-control" name="">%
+				<option value="">Seleccione</option>';
+				print cmb_empresa_cliente($cec);				
+			echo '
+			</select>
+		</div>
+
+		<div class="input-group">
+			<span class="input-group-addon">Item padre</span>
+			
+			<select id="cmb_codigo_padre" class="form-control" name="">%
+				<option value="">Seleccione</option>';
+				print cmb_item_padre($codigo_padre);
+				
+
+				echo '
+			</select>
+		</div>
+
+		<div class="input-group">
+			<span class="input-group-addon">Unidad</span>
+			<select class="form-control" name="" id="unidad">%
+				<option value="">Seleccione</option>';
+
+				foreach($unidades as $value){
+					$selected=($_REQUEST["unidad"]==$value) ? "selected" : "";
+					echo "<option $selected value='".$value."'>".$value."</option>";
+				}
+
+				echo '
+			</select>
+		</div>
+		';
+		
+	break;
+
+	case 'listado_herramientas':
+		
+		$sql="SELECT item_hijo.id as item_hijo_id, item_hijo.nombre as nombre_hijo, item_padre.codigo, item_padre.nombre as nombre_padre, item_hijo.unidad, item_hijo.vlrunitario, codigo_cliente
+		FROM item_hijo 
+		inner join item_padre 
+		on item_hijo.codigo=item_padre.codigo
+		";
+		if($_REQUEST["cmb_empresa_cliente"]!="") $sql.="where item_hijo.codigo_cliente=$_REQUEST[cmb_empresa_cliente]";
+		$sql.=" order by modify desc";
+		$resulta = mysqli_query($conexion, $sql);
+		$rows = mysqli_num_rows($resulta);
+		$rows = array();
+		while($row = mysqli_fetch_assoc($resulta)) {
+			array_push($rows, json_encode($row, JSON_UNESCAPED_UNICODE));
+		}	
+		echo json_encode($rows);
+	break;
+
 	case 'subir_foto':
 		$file = $_FILES[$name_element];
 	    $nombre = $file["name"];
@@ -32,7 +164,7 @@ switch ($causa) {
 	break;
 
 	case 'busca_cuadrilla_x_contratista':
-		echo $sql = "select codigo, nombre from cuadrillas where cod_contratista = $cod_contratista";  // cod_cuadrilla es la variable que viene
+		$sql = "select codigo, nombre from cuadrillas where cod_contratista = $cod_contratista";  // cod_cuadrilla es la variable que viene
 		$resulta = mysqli_query($conexion, $sql);
 		$rows = mysqli_num_rows($resulta);
 		if (!$rows > 0) { echo '0';

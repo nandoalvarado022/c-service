@@ -1,19 +1,40 @@
+@media (max-width: 480px) {
+  .desktop {
+    display: none !important; } }
+
+.container {
+  margin-top: 30px; }
+
+#admin_herramientas #modalEditarItem .modal-body > div {
+  margin-top: 10px; }
+
 #menu_principal {
-  padding: 5px 0;
+  height: 32px;
+  padding: 5px 0 2px;
   background: #4e8dbb;
-  top: 0; }
+  top: 0;
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  margin: 0 auto;
+  z-index: 10; }
+  #menu_principal .texto {
+    position: relative;
+    top: -4px;
+    left: 10px; }
 
 #menu_principal_nav {
-  position: absolute;
+  position: fixed;
   height: 100vh;
-  background: rgba(232, 232, 232, 0.9);
   z-index: 10;
   left: -100%;
   transition: 0.5s;
   max-width: 100%;
-  width: 100%; }
+  width: 100%;
+  top: 32px; }
   #menu_principal_nav.active {
-    left: 0%; }
+    left: 0%;
+    background: rgba(232, 232, 232, 0.9); }
 
 #inicio_session .row {
   margin-bottom: 10px; }
@@ -31,7 +52,7 @@ ul#menu_principal_nav > div a {
   color: white;
   font-weight: bold;
   text-transform: uppercase; }
-ul#menu_principal_nav > div:nth-child(1) div {
+ul#menu_principal_nav > div:nth-child(1) div, ul#menu_principal_nav > div:nth-child(7) div {
   background: rgba(31, 145, 181, 0.6); }
 ul#menu_principal_nav > div:nth-child(2) div {
   background: #59b1a1; }
@@ -46,6 +67,10 @@ ul#menu_principal_nav > div:nth-child(6) div {
 
 body#crea_cabecera {
   margin-bottom: 50px; }
+  body#crea_cabecera #contratista, body#crea_cabecera #cliente {
+    border: none;
+    border-radius: 0;
+    margin: -2px auto 20px; }
 
 body#captura_servicios .preview img {
   max-width: 140px; }

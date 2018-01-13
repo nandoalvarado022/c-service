@@ -32,8 +32,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 					<input value="<?php print $cod_contratista?>" <?php if($cod_contratista) echo "readonly"; ?> type="number" name="busca_contratista" id="busca_contratista" class="form-control"></input>
 					<input data-validar="false" readonly class="form-control" id = "contratista" name="contratista" placeholder="Digite codigo del contratista"/> 
 				</div>
-
-
+				
 				<label for="cuadrilla">Cuadrilla </label>
 				<div>
 					<select name="busca_cuadrilla" id="busca_cuadrilla" class="form-control">
@@ -53,26 +52,32 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 					</select>
 				</div>
 
-				<label for="cliente">ID de Servicio/Proyecto</label>
-				<div>
-					<input name="busca_cliente" id="busca_cliente" class="form-control"></input>
-					<input data-validar="false" readonly type="text" class="form-control" id = "cliente" name="cliente" placeholder="Digite codigo de cliente" /> 
-				</div>
+				<div style="margin: 20px 0;">
+					<label for="cliente">ID de Servicio/Proyecto</label>
+					<div>
+						<input name="busca_cliente" id="busca_cliente" class="form-control"></input>
+						<input data-validar="false" readonly type="text" class="form-control" id = "cliente" name="cliente" placeholder="Digite codigo de cliente" /> 
+					</div>
+				</div>						
 
 				<label for="idservicio">Descripción</label>
 				<div>
 					<input type="text" class="form-control" name="idservicio" placeholder="Digite resumen breve de la actividad" /> 
 				</div>
-
-				<label for="fecha">Fecha</label>
-				<div class="row">
-					<div class="col-md-6 col-xs-6">
-						<input type="date" class="form-control" name="fecha" placeholder="Digite fecha servicio" /> 
+				
+				<div style="margin: 20px 0;">
+					<label for="fecha">Fecha</label>
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<input type="date" class="form-control" name="fecha" placeholder="Digite fecha servicio" /> 
+						</div>
 					</div>
-					<div class="col-md-6 col-xs-6">
-						<div class="alert alert-info" role="alert">
-						  <p>Automáticamente el sistema coloca la fecha de hoy.</p>
-						</div>						
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<div class="alert alert-info" role="alert">
+							<p>Automáticamente el sistema coloca la fecha de hoy.</p>
+							</div>						
+						</div>
 					</div>
 				</div>
 
@@ -90,10 +95,10 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 				<br>
 
 				<div class="row">
-					<div class="col-md-3 col-xs-6">
+					<div class="col-md-3 col-xs-4 text-center col-xs-offset-2">
 	                    <input class="btn btn-default" onClick="window.location.href='entro.php'" name="submit" type="button" value="Volver">
 					</div>
-					<div class="col-md-3 col-xs-6">
+					<div class="col-md-3 col-xs-4 text-center">
 						<input class="btn btn-success" name="submit" type="submit" value="Continuar" />
 					</div>
                 </div>
@@ -109,10 +114,8 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 			});
 
 			$(document).ready( function() {
-				<?php if($_SESSION["cod_contratista"] != "") echo "validar_contratista();";?>
-				<?php // if($_SESSION["cod_cuadrilla"] != "") echo "validar_cuadrilla();";?>
+				<?php if($cod_contratista!="") echo "validar_contratista();";?>				
 			    $('[name="fecha"]').val(new Date().toDateInputValue());
-
 			    $("#busca_contratista").blur(function(){ // validando contratista
 			    	validar_contratista();
 				}); // validando contratista
@@ -122,6 +125,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 				// }); // validando cuadrilla
 				
 				$("#busca_cliente").blur(function(){ // // validando cliente
+					if(this.value=="") return false;
 					$.ajax({
 						url: "ajax.php",
 						data: "causa=cliente&cod_cliente="+busca_cliente.value,
@@ -157,6 +161,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 
 			function validar_contratista(){
 				datos = "causa=contratista&cod_contratista="+busca_contratista.value;
+				if(busca_contratista.value=="") return false;
 				$.ajax({
 					url: "ajax.php",
 					data: datos,
