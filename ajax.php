@@ -4,6 +4,7 @@ ini_set( 'upload_max_size' , '12M' );
 ini_set( 'post_max_size', '13M');
 ini_set( 'memory_limit', '15M' );
 include "conex.php";
+include "functions.php";
 // include "PHPMailerAutoload.php";
 foreach($_GET as $nombre_campo => $valor){
    	$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -31,7 +32,7 @@ function cmb_item_padre($codigo_padre){
 	return $res;
 }
 
-function cmb_empresa_cliente($cec){
+function asd_cmb_empresa_cliente($cec){
 	// cec: codigo empresa cliente
 	global $conexion;
 	$sql="SELECT *
@@ -49,6 +50,7 @@ function cmb_empresa_cliente($cec){
 	return $res;
 }
 
+$causa=(isset($causa)) ? $causa : "";
 switch ($causa) {
 
 	case 'editarItemCon':
@@ -95,7 +97,7 @@ switch ($causa) {
 			
 			<select id="cmb_empresa_cliente" class="form-control" name="">%
 				<option value="">Seleccione</option>';
-				print cmb_empresa_cliente($cec);				
+				print cmb_empresa_cliente($cec);
 			echo '
 			</select>
 		</div>

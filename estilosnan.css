@@ -54,7 +54,7 @@ ul#menu_principal_nav > div a {
   text-transform: uppercase; }
 ul#menu_principal_nav > div:nth-child(1) div, ul#menu_principal_nav > div:nth-child(7) div {
   background: rgba(31, 145, 181, 0.6); }
-ul#menu_principal_nav > div:nth-child(2) div {
+ul#menu_principal_nav > div:nth-child(2) div, ul#menu_principal_nav > div:nth-child(8) div {
   background: #59b1a1; }
 ul#menu_principal_nav > div:nth-child(3) div {
   background: rgba(31, 144, 46, 0.6); }

@@ -73,6 +73,15 @@
 					</li>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
+					<li>
+						<span class="glyphicon glyphicon glyphicon-user"></span>
+						<a href="admin_user.php">Administrar Usuarios</a>
+					</li>
+				</div>
+			</div>
 			<?php
 		}
 

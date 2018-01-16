@@ -20,13 +20,10 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 				?>  
 				
 			</header>
+
+			<h3 style="margin: 20px 0 30px; text-align: center;">Registro de <span class="label label-default">Servicios/Proyectos</span></h3>
 			
 			<form id="first_form" action="captura_servicios.php" method="POST">
-				
-
-				<h3>Registro de <span class="label label-default">Servicios/Proyectos </span></h3>
-
-
 				<label for="contratista">Coordinador </label>
 				<div>
 					<input value="<?php print $cod_contratista?>" <?php if($cod_contratista) echo "readonly"; ?> type="number" name="busca_contratista" id="busca_contratista" class="form-control"></input>
