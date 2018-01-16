@@ -1,8 +1,9 @@
 <?php
 session_start();?>
 <!DOCTYPE html>
-<html lang="en">
-	<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<html lang="es">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<?php include "header.php";?>
 	</head>
 	<body id="inicio_session">

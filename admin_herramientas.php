@@ -148,8 +148,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
                     cec: $("#modalEditarItem  #cmb_empresa_cliente").val()
                 },
                 success: function(res){
-                    alert(res);
-                    
+                    // alert(res);
                     $('#modalEditarItem').modal('hide');
                     listado_herramientas();
                 }
