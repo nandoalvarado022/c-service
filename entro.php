@@ -17,7 +17,10 @@ session_start();?>
 		</header>
 			
 		<?php print isset($_GET["msg"]) ? '<br><div class="alert alert-warning" role="alert">'.$_GET["msg"].'</div>' : "";?>
-
+		
+		<?php 
+			include("footer.html");
+		?>
 		
 	</body>
 </html>

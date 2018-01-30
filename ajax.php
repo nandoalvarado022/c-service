@@ -4,7 +4,7 @@ ini_set( 'upload_max_size' , '12M' );
 ini_set( 'post_max_size', '13M');
 ini_set( 'memory_limit', '15M' );
 include "conex.php";
-include "functions.php";
+// include "functions.php";
 // include "PHPMailerAutoload.php";
 foreach($_GET as $nombre_campo => $valor){
    	$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
@@ -52,6 +52,10 @@ function asd_cmb_empresa_cliente($cec){
 
 $causa=(isset($causa)) ? $causa : "";
 switch ($causa) {
+	case 'itemPadreCon':
+		$sql="INSERT INTO item_padre(nombre) VALUES ('$nombre')";
+		$resulta = mysqli_query($conexion, $sql);
+	break;
 
 	case 'editarItemCon':
 		if($_REQUEST["codigo_item"]!=""){
@@ -87,46 +91,48 @@ switch ($causa) {
 		$codigo_padre=isset($_REQUEST["codigo_padre"]) ? $_REQUEST["codigo_padre"] : "";
 		$cec=isset($_REQUEST["cec"]) ? $_REQUEST["cec"] : "";
 		echo '
-		<div class="input-group">
-			<span class="input-group-addon">Precio</span>
-			<input type="text" class="form-control" id="inpPrecio" value="'.$_REQUEST["vlrunitario"].'">
-		</div>
+		<!--<div id="item_hijo">-->
+			<div class="input-group">
+				<span class="input-group-addon">Precio</span>
+				<input type="text" class="form-control" id="inpPrecio" value="'.$_REQUEST["vlrunitario"].'">
+			</div>
 
-		<div class="input-group">
-			<span class="input-group-addon">Empresa</span>
-			
-			<select id="cmb_empresa_cliente" class="form-control" name="">%
-				<option value="">Seleccione</option>';
-				print cmb_empresa_cliente($cec);
-			echo '
-			</select>
-		</div>
-
-		<div class="input-group">
-			<span class="input-group-addon">Item padre</span>
-			
-			<select id="cmb_codigo_padre" class="form-control" name="">%
-				<option value="">Seleccione</option>';
-				print cmb_item_padre($codigo_padre);
+			<div class="input-group">
+				<span class="input-group-addon">Empresa</span>
 				
-
+				<select id="cmb_empresa_cliente" class="form-control" name="">%
+					<option value="">Seleccione</option>';
+					print cmb_empresa_cliente($cec);
 				echo '
-			</select>
-		</div>
+				</select>
+			</div>
 
-		<div class="input-group">
-			<span class="input-group-addon">Unidad</span>
-			<select class="form-control" name="" id="unidad">%
-				<option value="">Seleccione</option>';
+			<div class="input-group">
+				<span class="input-group-addon">Item padre</span>
+				
+				<select id="cmb_codigo_padre" class="form-control" name="">%
+					<option value="">Seleccione</option>';
+					print cmb_item_padre($codigo_padre);
+					
 
-				foreach($unidades as $value){
-					$selected=($_REQUEST["unidad"]==$value) ? "selected" : "";
-					echo "<option $selected value='".$value."'>".$value."</option>";
-				}
+					echo '
+				</select>
+			</div>
 
-				echo '
-			</select>
-		</div>
+			<div class="input-group">
+				<span class="input-group-addon">Unidad</span>
+				<select class="form-control" name="" id="unidad">%
+					<option value="">Seleccione</option>';
+
+					foreach($unidades as $value){
+						$selected=($_REQUEST["unidad"]==$value) ? "selected" : "";
+						echo "<option $selected value='".$value."'>".$value."</option>";
+					}
+
+					echo '
+				</select>
+			</div>
+		<!--</div> // item_hijo-->
 		';
 		
 	break;
@@ -196,11 +202,11 @@ switch ($causa) {
 
 	case 'guardando_servicio':
 		echo $sql =  "INSERT INTO servicios_cab VALUES (null, '$idservicio', $codigo_html_to_excel, '$busca_cuadrilla', '$busca_contratista', '$fecha', '$direccion', '$vlrtotal', null, '$descripcion', '$observaciones')";
-		echo "<br>";
+		// echo "<br>";
 	
-		if (!mysqli_query($conexion, $sql)) {
-			echo "Error: " . mysqli_error($conexion);
-		}
+		// if (!mysqli_query($conexion, $sql)) {
+		// 	echo "Error: " . mysqli_error($conexion);
+		// }
 
 		// echo "<pre>"; print_r(json_decode($items)); echo "</pre>";
 		foreach (json_decode($items) as $key => $value) {

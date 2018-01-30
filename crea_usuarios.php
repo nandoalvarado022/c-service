@@ -1,6 +1,8 @@
 <?php 
 $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; ?>
-<?php include "conex.php";?>
+<?php include "conex.php";
+print_r($_SESSION);
+?>
 <!DOCTYPE html>
 <html>
 	<head>		
@@ -12,49 +14,80 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 				<?php include "bienvenido.php";?>
 			</header>
 
-            <h3 style="margin: 20px 0 30px; text-align: center;">Administrador de <span class="label label-default">Coordinador</span></h3>
+            <h3 style="margin: 20px 0 30px; text-align: center;">Creación de <span class="label label-default">Usuarios y Empresas</span></h3>
 
 			<div class="group container">
 				<form action="registro_usuarios.php" method="POST">
-						<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-							<label for="Nit">Codigo</label>
-								<input type="number" name="codigo" placeholder="Digite codigo del nuevo usuario Coordinador" class="form-control" required>
-								
-							</div>
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<select name="tipo_usuario" id="" class="form-control">
+							<option value="">Tipo de usuario</option>
+							<?php if($_SESSION["grpuser"]=="ADM"){ // si es empresa padre usuario logueado?>
+								<option value="EP">Empresa padre</option>								
+							<?php }?>
+							<?php if($_SESSION["grpuser"]=="EP"){ // si es empresa padre usuario logueado?>
+								<option value="EC">Empresa cliente</option>
+							<?php }?>
+							<?php if($_SESSION["grpuser"]=="EP"){ // si es empresa padre usuario logueado?>
+								<option value="COO">Coordinador</option>
+							<?php }?>
+						</select>
 					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-								<label for="Nombre">Nombre</label>
-								<input type="text" name="nombre" placeholder="Digite nombre del nuevo usuario Coordinador" class="form-control" required>
-							</div>
+					
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<input type="number" name="codigo" placeholder="Codigo" class="form-control">
 					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-								<label>Email</label>
-								<input type="text" name="email_1" placeholder="Digite e-mail" class="form-control" >
-							</div>
+
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<select name="cmb_empresa_cliente" id="" class="form-control">
+							<option value="">Seleccione empresa cliente</option>
+							<?php print cmb_empresa_cliente("")?>
+						</select>
 					</div>
-					<br>
-					 <div class="row">
-						<div class="col-md-6 col-md-offset-3">
-								<label for="clave">Clave</label>
-								<input type="password" name="clave" placeholder="Digite clave del nuevo usuario Coordinador" class="form-control" required>
-							</div>
+					
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<input type="text" name="nombre" placeholder="Nombre" class="form-control" required>
 					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-3 col-md-offset-3 text-center">
-							<input class="btn btn-default" onClick="window.location.href='entro.php'" name="submit" type="button" value="Volver">
-						</div>
-						<div class="col-md-3 text-center">
-							<input class="btn btn-success" name="submit" type="submit" value="Registrar" />
-						</div>
-					</div>         
+
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<input type="text" name="email" placeholder="Correo electrónico" class="form-control" >
+					</div>
+					 
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<input type="password" name="clave" placeholder="Contraseña" class="form-control">
+					</div>
+
+					
+					<div class="margin-bottom col-md-6 col-md-offset-3 text-center">
+						<input class="btn btn-default margin-right" onClick="window.location.href='entro.php'" name="submit" type="button" value="Volver">
+						<input class="btn btn-success" name="submit" type="submit" value="Registrar" />
+					</div>
+					
 				</form>
 			</div>
 		</div>
+
+		<script>
+			$("[name='tipo_usuario'").change(function(a, b){
+				valor=$(this).val();
+				$("[name='clave'], [name='email'], [name='codigo']").show();
+				$("[name='cmb_empresa_cliente']").hide();
+				switch (valor) {
+					case "EC":
+						$("[name='clave'], [name='email'], [name='codigo']").hide();
+					break;
+
+					case "COO":
+					$("[name='cmb_empresa_cliente']").show();
+					break;
+				}
+			});
+
+			<?php 
+			$msg = isset($_GET["msg"]) ? $_GET["msg"] : "";
+			if($msg!=""){?>
+				$.notify("<?php echo $_GET['msg']?>", "info");
+				<?php
+			}?>
+		</script>
 	</body>
 </html>

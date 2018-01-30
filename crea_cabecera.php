@@ -225,5 +225,9 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 			// }
 
 		</script>
+		<?php 
+			include("footer.html");
+		?>
+		
 	</body>
 </html>

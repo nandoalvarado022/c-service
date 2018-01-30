@@ -1,5 +1,9 @@
 $movil: "max-width: 480px"
 $desktop: "min-width: 480px"
+.margin-bottom
+	margin-bottom: 15px
+.margin-right
+	margin-right: 15px
 .desktop
 	@media ($movil)
 		display: none !important	
@@ -10,9 +14,7 @@ $desktop: "min-width: 480px"
 		.modal-body
 			> div
 				margin-top: 10px
-				
 				select
-					
 #menu_principal
 	height: 32px
 	padding: 5px 0 2px
@@ -30,17 +32,17 @@ $desktop: "min-width: 480px"
 #menu_principal_nav
 	position: fixed
 	height: 100vh
-	
 	// background: red
 	z-index: 10
 	left: -100%
 	transition: 0.5s
-	max-width: 100%
-	width: 100%
+	max-width: '100%'
+	width: '100%'
 	top: 32px
 	&.active
 		left: 0%
 		background: rgba(232, 232, 232, 0.9)
+		box-shadow: 2px 2px 2px 0px #ddd
 #inicio_session
 	.row
 		margin-bottom: 10px
@@ -105,4 +107,12 @@ body#print_excel_servicio
 		img
 			max-width: 200px
 			height: auto
-//#A3E4D7		
+//#A3E4D7
+footer
+	position: absolute
+	bottom: 0px
+	width: 100%
+	background: #ddd
+	border: 1px solid #ccc
+	padding: 10px 20px
+	left: 0px

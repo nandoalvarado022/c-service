@@ -12,7 +12,7 @@ if (isset ($_POST['codigo'])) {
 		header('Location: entro.php?msg=La cuadrilla con el codigo '.$wnit.' ya se encuentra en la BD.');
 	} else {
 		// echo
-		$query =  "INSERT INTO cuadrillas (codigo, nombre, cod_contratista) VALUES ('$wnit', '$wnombre', '".$_SESSION["cod_contratista"]."')";
+		$query =  "INSERT INTO cuadrillas (codigo, nombre, cod_coordinador) VALUES ('$wnit', '$wnombre', '".$_SESSION["coduser"]."')";
 		$resulta = mysqli_query($conexion, $query);
 		$gru = 'CUA';
 		$query =  "INSERT INTO usuarios (codigo, nombre, pwd, grupo) VALUES ('$wnit', '$wnombre', '$wclave', '$gru')";

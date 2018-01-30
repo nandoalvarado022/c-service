@@ -8,6 +8,10 @@ session_start();?>
 	</head>
 	<body id="inicio_session">
 		<div class="container">
+			<div class="row" id="menu_principal">
+				<div class="col-xs-4" style="color: white;"><b>C-SERVICES</b></div>
+			</div>
+
 			<form action="valida_entrada.php" method="post">
 				<div class="row">
 					<div class="col-md-4"></div>
@@ -36,9 +40,7 @@ session_start();?>
 						
 						<?php print isset($_GET["error"]) ? '<div class="row"><div class="col-xs-1"></div>
 						<div class="col-md-12 col-xs-10 text-center alert alert-warning" role="alert">'.$_GET["error"].'</div><div class="col-xs-1"></div>' : "" ;?>
-						<input class="btn btn-success" name="submit" type="submit" value="Ingresar">
-						<button type="button" class="btn btn-default">Salir</button>
-						
+						<input class="btn btn-success margin-right" name="submit" type="submit" value="Ingresar">
 					</div>
 					<div class="col-md-4"></div>
 				</div>
@@ -48,6 +50,10 @@ session_start();?>
 
 
 		</div>
+		<?php 
+			include("footer.html");
+		?>
+		
 
 		<style>
 		input::-webkit-outer-spin-button,
@@ -57,5 +63,6 @@ session_start();?>
 		    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 		}
 		</style>
+		
 	</body>
 </html>

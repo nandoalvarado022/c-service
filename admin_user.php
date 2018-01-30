@@ -22,6 +22,13 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 			</header>
 
             <h3 style="margin: 20px 0 30px; text-align: center;">Administrador de <span class="label label-default">Usuarios</span></h3>
+			<div>
+				<form action="">
+					
+					<input class="form-control margin-bottom" type="text" placeholder="Nombre">
+					<input class="form-control margin-bottom" type="email" name="" placeholder="Correo electronico">
+				</form>
+			</div>
         </div>
     </body>
 </html>

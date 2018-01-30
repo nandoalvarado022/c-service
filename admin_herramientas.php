@@ -20,37 +20,60 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
                 <h3 class="panel-title">Filtrar</h3>                 
                 </div>
                 <div class="panel-body"> 
-                    <div class="input-group">
-                        <span class="input-group-addon">Seleccione empresa</span>
-                        <select class="form-control" name="" id="cmb_empresa_cliente">
-                            <option value="">Cargando...</option>
-                        </select>
-                    </div>
-                    <br>
-                    <div>
-                        <button class="btn btn-primary" onclick="editarItem()">Añadir item</button>
+                    <div class="col-md-12 margin-bottom">
+                        <div class="input-group">
+                            <span class="input-group-addon">Seleccione empresa</span>
+                            <select class="form-control" name="" id="cmb_empresa_cliente">
+                                <option value="">Cargando...</option>
+                            </select>
+                        </div>
                     </div>
                     
+                    <div class="col-md-12">
+                        <button class="col-md-2 btn btn-default" onclick="javascript:$('#modalItemPare').modal('show')">Agregar item padre</button>
+                        <button class="col-md-2 col-md-offset-1 btn btn-default" onclick="editarItem()">Agregar item hijo</button>
+                    </div>
                 </div> 
             </div>
 
-            <!-- Modal -->
+            <!-- Modal item hijo-->
             <div class="modal fade" id="modalEditarItem" tabindex="-1" role="dialog" aria-labelledby="">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id=""><span id="nombre_item" contenteditable=true></span></h4>
-                </div>
-                <div class="modal-body">
-                    Cargando ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="editarItemCon()">Confirmar</button>
-                </div>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id=""><span id="nombre_item" contenteditable=true></span></h4>
+                    </div>
+                    <div class="modal-body">
+                        Cargando ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="editarItemCon()">Confirmar</button>
+                    </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Modal item padre-->
+            <div class="modal fade" id="modalItemPare" tabindex="-1" role="dialog" aria-labelledby="">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="">
+                            Agregando item padre
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <input class="form-control" type="text" id="nombre_item_padre" placeholder="Nombre del item padre">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="itemPadreCon()">Confirmar</button>
+                    </div>
+                    </div>
+                </div>
             </div>
 
             <!-- listado herramientas -->
@@ -75,6 +98,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
         function listado_herramientas(){
             
             $("#tbl_listado_herramientas tbody").empty();
+            
             $.ajax({
                 url: "ajax.php",
                 dataType: "json",
@@ -98,15 +122,39 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
                     
                 },
                 error: function (request, status, error) {
-                    console.log("Error: "+request.responseText);
+                    // console.log(request.responseText);
+                    // debugger;
+                    
                 }
-            })
+            });
+            
+        }
+
+        
+
+        function itemPadreCon(element){ // confirmar adicion de item padre
+            $.ajax({
+                url: "ajax.php",
+                data: {
+                    causa: "itemPadreCon",
+                    nombre: nombre_item_padre.value,
+                },
+                success: function(res){
+                    $.notify("Se agrego existosamente el item padre", "success");
+                    $('#modalItemPare').modal('hide');
+                },
+                error: function (request, status, error) {
+                    alert("Ocurrio un error");
+                }
+                
+            });
         }
 
         function editarItem(element){
+            // ph padre o hijo
             $('#modalEditarItem .modal-body').html("Cargando...");
             $('#modalEditarItem').modal('show');
-            if(typeof element=="undefined"){
+            if(typeof element=="undefined"){ // creación
                 codigo_item="";
                 data={
                     causa: "editar_item_listado_herramientas"
@@ -148,13 +196,12 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
                     cec: $("#modalEditarItem  #cmb_empresa_cliente").val()
                 },
                 success: function(res){
-                    // alert(res);
+                    $.notify("Se agrego existosamente el item hijo", "success");
                     $('#modalEditarItem').modal('hide');
                     listado_herramientas();
                 }
-            })
+            });
         }
-
         // cargando combo empresa cliente
             $.ajax({
                 url: "ajax.php",
@@ -163,14 +210,11 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
                 },
                 success: function(res){
                     cmb_empresa_cliente.innerHTML = res;
-                    // $("#cmb_empresa_cliente").change(listado_herramientas());
-
                     cmb_empresa_cliente.addEventListener("change", function() {
-                        listado_herramientas()
-                        // alert();
+                        listado_herramientas();
                     });
                 }
-            })            
+            });
         </script>
 	</body>
 </html>

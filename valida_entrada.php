@@ -37,7 +37,7 @@
 		} else{
 	 		mysqli_close($conexion); // cierra la conexion
 //	 		echo("Error  " . mysqli_error($conexion));
-	 	    header('Location: error.php');
+	 	    // header('Location: error.php');
 		}
 	}
 ?>
