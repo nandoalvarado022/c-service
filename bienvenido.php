@@ -4,7 +4,7 @@
 	if($_SESSION['nomuser']=="") header('Location: /softwareydiseno?error=Debe iniciar sessión.');?>
 	<div class="row" id="menu_principal">
 		<div class="col-xs-4" style="color: white;"><b>C-SERVICES</b></div>
-		<div class="col-xs-4">
+		<div class="col-xs-6">
 			
 			<span class="text-uppercase" style="color: white;">
 				<span style="font-size: 20px" class="glyphicon glyphicon-user"></span>
@@ -12,7 +12,7 @@
 			</span>
 		</div>
 		
-		<div class="col-xs-4" style="cursor: pointer; color: white;" onclick="javascript: $('#menu_principal_nav').toggleClass('active')">
+		<div class="col-xs-2" style="text-align: right; cursor: pointer; color: white;" onclick="javascript: $('#menu_principal_nav').toggleClass('active')">
 			<span style="font-size: 20px" class="glyphicon glyphicon-align-justify"></span>
 			<span class="texto desktop">MENU</span>
 		</div>

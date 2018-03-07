@@ -72,12 +72,10 @@ ul#menu_principal_nav > div:nth-child(5) div {
 ul#menu_principal_nav > div:nth-child(6) div {
   background: #4e8dbb; }
 
-body#crea_cabecera {
-  margin-bottom: 50px; }
-  body#crea_cabecera #contratista, body#crea_cabecera #cliente {
-    border: none;
-    border-radius: 0;
-    margin: -2px auto 20px; }
+body#crea_cabecera #contratista, body#crea_cabecera #cliente {
+  border: none;
+  border-radius: 0;
+  margin: -2px auto 20px; }
 
 body#captura_servicios .preview img {
   max-width: 140px; }
@@ -100,8 +98,7 @@ body#print_excel_servicio {
     height: auto; }
 
 footer {
-  position: absolute;
-  bottom: 0px;
+  margin-top: 50px;
   width: 100%;
   background: #ddd;
   border: 1px solid #ccc;
