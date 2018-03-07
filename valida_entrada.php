@@ -4,7 +4,7 @@
 		$pro = $_POST['usuario'];
 		$cla = $_POST['password'];
 		$nompro = '';
-		$query = "select nombre, grupo from usuarios where codigo = $pro and pwd=$cla";
+		$query = "select nombre, grupo from usuarios where codigo = '$pro' and pwd='$cla'";
 		$resulta = mysqli_query($conexion, $query);
 		$rows = mysqli_num_rows($resulta);
 		if ($rows > 0) {
@@ -35,9 +35,9 @@
 		 		header('Location: entro.php');
 			}
 		} else{
-	 		mysqli_close($conexion); // cierra la conexion
-//	 		echo("Error  " . mysqli_error($conexion));
-	 	    // header('Location: error.php');
+			// echo("Error  " . mysqli_error($conexion));
+			mysqli_close($conexion); // cierra la conexion
+	 	    header('Location: /');
 		}
 	}
 ?>

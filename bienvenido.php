@@ -55,7 +55,7 @@
 			</div>			
 			<?php 
 		}
-
+		
 		if (in_array($_SESSION['grpuser'], array("ADM", "EP"))) {?>
 			<div>
 				<div class="col-xs-10 col-xs-offset-1 col-md-10">

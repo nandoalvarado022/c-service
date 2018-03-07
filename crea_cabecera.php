@@ -69,16 +69,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 							<input type="date" class="form-control" name="fecha" placeholder="Digite fecha servicio" /> 
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-6 col-xs-12">
-							<div class="alert alert-info" role="alert">
-							<p>Automáticamente el sistema coloca la fecha de hoy.</p>
-							</div>						
-						</div>
-					</div>
 				</div>
-
-
 				
 				<div class="row">
 					<div class="col-md-12">

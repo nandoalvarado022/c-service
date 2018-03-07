@@ -103,6 +103,7 @@ footer {
   background: #ddd;
   border: 1px solid #ccc;
   padding: 10px 20px;
-  left: 0px; }
+  left: 0px;
+  overflow: hidden; }
 
 /*# sourceMappingURL=estilosnan.css.map */
