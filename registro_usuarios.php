@@ -21,14 +21,14 @@
 			// cod_contratista es empresa padre
 			$empresa_padre_cod=$_SESSION["coduser"];
 			$query="INSERT INTO clientes (nombre, estado, empresa_padre) VALUES ('$nombre', 1, $empresa_padre_cod)";
-			if(mysqli_query($conexion, $query)) header('Location: crea_usuarios.php?msg=Se creo la empresa cliente con exito!.');
-			else header('Location: crea_usuarios.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
+			if(mysqli_query($conexion, $query)) header('Location: entro.php?msg=Se creo la empresa cliente con exito!.');
+			else header('Location: entro.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
 		break;
 
 		case "EP":
 			validar_usuario($codigo);
-			if(ingresar_usr($codigo, $nombre, $clave, 'EP')) header('Location: crea_usuarios.php?msg=Se creo el registro con el código '.$codigo.' con exito!.');
-			else header('Location: crea_usuarios.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
+			if(ingresar_usr($codigo, $nombre, $clave, 'EP')) header('Location: entro.php?msg=Se creo el registro con el código '.$codigo.' con exito!.');
+			else header('Location: entro.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
 		break;
 
 		case "COO":
@@ -37,8 +37,8 @@
 				$empresa_padre_cod=$_SESSION["coduser"];
 				$query="INSERT INTO coordinadores(codigo, empresa_padre) VALUES($codigo, $empresa_padre_cod)";
 				mysqli_query($conexion, $query);
-				header('Location: crea_usuarios.php?msg=Se creo el registro con el código '.$codigo.' con exito!.');
-			} else header('Location: crea_usuarios.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
+				header('Location: entro.php?msg=Se creo el registro con el código '.$codigo.' con exito!.');
+			} else header('Location: entro.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
 		break;
 	}
 
@@ -47,7 +47,7 @@
 		$query = "select codigo, nombre from usuarios where codigo = $codigo_usr";
 		$resulta = mysqli_query($conexion, $query);
 		$rows = mysqli_num_rows($resulta);
-		if ($rows > 0) header('Location: crea_usuarios.php?msg=El código '.$codigo.' ya se encuentra en la BD.');
+		if ($rows > 0) header('Location: entro.php?msg=El código '.$codigo.' ya se encuentra en la BD.');
 	}
 
 	function ingresar_usr($codigo, $nombre, $clave, $tipo){

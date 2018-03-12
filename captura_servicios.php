@@ -43,7 +43,7 @@ include "conex.php";
 			</div>
 
 			<h2 style="text-align: center;">
-				<span>Actualizar Servicio ó Captura de Actividad</span>
+				<h3 style="margin: 20px 0 30px; text-align: center;">Actualizar Servicio <span class="label label-default">ó Captura de Actividad</span></h3>
 			</h2>
 			
 			<?php 
@@ -79,7 +79,7 @@ include "conex.php";
 					<tr>
 						<th>ID de Servicio/Proyecto</th>
 						<td>
-							<?php echo $_POST["busca_cliente"]?> - <?php echo $_POST["cliente"]?>
+							<?php echo $_POST["id_servicio"]?>
 						</td>
 					</tr>
 					<tr>

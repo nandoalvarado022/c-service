@@ -56,7 +56,7 @@
 			<?php 
 		}
 		
-		if (in_array($_SESSION['grpuser'], array("ADM", "EP"))) {?>
+		if (in_array($_SESSION['grpuser'], array("ADM", "EP", "CON"))) {?>
 			<div>
 				<div class="col-xs-10 col-xs-offset-1 col-md-10">
 					<li>

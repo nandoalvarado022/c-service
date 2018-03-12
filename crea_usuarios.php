@@ -20,11 +20,13 @@ print_r($_SESSION);
 				<form action="registro_usuarios.php" method="POST">
 					<div class="margin-bottom col-md-6 col-md-offset-3">
 						<select name="tipo_usuario" id="" class="form-control">
-							<option value="">Tipo de usuario</option>
+							<option value="">Seleccione tipo de usuario</option>
 							<?php if($_SESSION["grpuser"]=="ADM"){ // si es empresa padre usuario logueado?>
 								<option value="EP">Empresa padre</option>								
-							<?php }?>
-							<?php if($_SESSION["grpuser"]=="EP"){ // si es empresa padre usuario logueado?>
+							<?php }
+							
+							// print "asd".$_SESSION["grpuser"];
+							if(in_array($_SESSION["grpuser"], array("EP", "CON"))){ // si es empresa padre usuario logueado?>
 								<option value="EC">Empresa cliente</option>
 							<?php }?>
 							<?php if($_SESSION["grpuser"]=="EP"){ // si es empresa padre usuario logueado?>
@@ -35,6 +37,10 @@ print_r($_SESSION);
 					
 					<div class="margin-bottom col-md-6 col-md-offset-3">
 						<input type="number" name="codigo" placeholder="Codigo" class="form-control">
+					</div>
+
+					<div class="margin-bottom col-md-6 col-md-offset-3">
+						<input type="text" name="nit" placeholder="Nit" class="form-control">
 					</div>
 
 					<div class="margin-bottom col-md-6 col-md-offset-3">
@@ -70,10 +76,10 @@ print_r($_SESSION);
 			$("[name='tipo_usuario'").change(function(a, b){
 				valor=$(this).val();
 				$("[name='clave'], [name='email'], [name='codigo']").show();
-				$("[name='cmb_empresa_cliente']").hide();
+				$("[name='cmb_empresa_cliente']").parent().hide();
 				switch (valor) {
 					case "EC":
-						$("[name='clave'], [name='email'], [name='codigo']").hide();
+						$("[name='clave'], [name='email'], [name='codigo']").parent().hide();
 					break;
 
 					case "COO":

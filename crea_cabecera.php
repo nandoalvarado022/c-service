@@ -3,7 +3,13 @@
 ?>
 <?php include "conex.php";
 $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; 
-// echo "<pre>"; print_r($_SESSION); echo "</pre>";
+
+	
+	// print_r($_SESSION);
+	
+	
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,36 +31,56 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 			<h3 style="margin: 20px 0 30px; text-align: center;">Registro de <span class="label label-default">Servicios/Proyectos</span></h3>
 			
 			<form id="first_form" action="captura_servicios.php" method="POST">
-				<label for="contratista">Coordinador </label>
 				<div>
-					<input value="<?php print $cod_contratista?>" <?php if($cod_contratista) echo "readonly"; ?> type="number" name="busca_contratista" id="busca_contratista" class="form-control"></input>
-					<input data-validar="false" readonly class="form-control" id = "contratista" name="contratista" placeholder="Digite codigo del contratista"/> 
+					<?php
+					if($cod_contratista){?>
+						<input value="<?php print $cod_contratista?>" readonly type="number" name="busca_contratista" id="busca_contratista" class="form-control hidden"></input>	
+						<?php
+					} else{?>
+						<label for="contratista">Coordinador </label>
+							<input type="number" name="busca_contratista" id="busca_contratista" class="form-control"></input>
+							<input data-validar="false" readonly class="form-control" id = "contratista" name="contratista" placeholder="Digite codigo del contratista"/> 
+						<?php
+					}?>
+					
 				</div>
-				
-				<label for="cuadrilla">Cuadrilla </label>
-				<div>
-					<select name="busca_cuadrilla" id="busca_cuadrilla" class="form-control">
-						<?php 
-							if ($_SESSION["cod_contratista"]!="") {
-								echo "<option value=''>Seleccione</option>";
-								$sql = "SELECT codigo, nombre FROM cuadrillas
-								where cod_contratista=$cod_contratista";
-								$resulta = mysqli_query($conexion, $sql);
-								while($data = mysqli_fetch_array($resulta)) {
-									echo "<option value='$data[codigo]'>".$data["nombre"]."</option>";
+					
+				<?php
+				if(isset($_SESSION["cod_cuadrilla"])){
+					echo '<select name="busca_cuadrilla" id="busca_cuadrilla" class="form-control hidden">';
+					echo "<option value='$_SESSION[cod_cuadrilla]'>$_SESSION[nomuser]</option>";
+					echo '</select>';
+				} else{?>
+					<label for="cuadrilla">Cuadrilla </label>
+					<div>
+						<select name="busca_cuadrilla" id="busca_cuadrilla" class="form-control">
+							<?php 
+								if ($_SESSION["cod_contratista"]!="") {
+									echo "<option value=''>Seleccione</option>";
+									$sql = "SELECT codigo, nombre FROM cuadrillas
+									where cod_contratista=$cod_contratista";
+									$resulta = mysqli_query($conexion, $sql);
+									while($data = mysqli_fetch_array($resulta)) {
+										echo "<option value='$data[codigo]'>".$data["nombre"]."</option>";
+									}
 								}
-							} else if($_SESSION["cod_cuadrilla"]!=""){
-								echo "<option value='$_SESSION[cod_cuadrilla]'>$_SESSION[nomuser]</option>";
-							}
-						?>
-					</select>
-				</div>
+							?>
+						</select>
+					</div>
+					<?php
+				}?>
+
+				
 
 				<div style="margin: 20px 0;">
 					<label for="cliente">ID de Servicio/Proyecto</label>
 					<div>
-						<input name="busca_cliente" id="busca_cliente" class="form-control"></input>
-						<input data-validar="false" readonly type="text" class="form-control" id = "cliente" name="cliente" placeholder="Digite codigo de cliente" /> 
+						<select name="id_servicio" id="id_servicio" class="form-control">
+						
+						<?php print cmb_servicio_proyecto();?>
+							<!-- <input name="busca_cliente" id="busca_cliente" class="form-control"></input> -->
+							<!-- <input data-validar="false" readonly type="text" class="form-control" id = "cliente" name="cliente" placeholder="Digite codigo de cliente" />  -->
+						</select>
 					</div>
 				</div>						
 
@@ -113,6 +139,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 				// 	validar_cuadrilla();
 				// }); // validando cuadrilla
 				
+				/*
 				$("#busca_cliente").blur(function(){ // // validando cliente
 					if(this.value=="") return false;
 					$.ajax({
@@ -137,13 +164,14 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 						}
 					})		
 				}); // validando cliente
+				*/
 
-				$("input[type='submit']").click(function(e){
+				/*$("input[type='submit']").click(function(e){
 					if($(contratista).attr("data-validar") == "false" || $(cliente).attr("data-validar") == "false"){
 						e.preventDefault();
 						alert("Fallo la validación de campos");
 					}
-				});
+				});*/
 			});
 
 			
@@ -157,13 +185,15 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 					type: "GET",
 					// async: false,
 					beforeSend: function(){
-						contratista.value = "Consultando...";
+						if(typeof contratista!="undefined") contratista.value = "Consultando...";
 					},
 					success: function(res){
 						if (res!="0"){
-							contratista.value = res; 
-							$(contratista).attr("data-validar", true);
-							cargar_cuadrilla();
+							if(typeof contratista!="undefined"){
+								contratista.value = res; 
+								$(contratista).attr("data-validar", true);
+								cargar_cuadrilla();
+							}
 						} else{
 							contratista.value = "Contratista no registrado";
 							$(contratista).attr("data-valida", 0);
