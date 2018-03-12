@@ -5,7 +5,7 @@
 $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; 
 
 	
-	// print_r($_SESSION);
+	// echo "<br><br><br>"; print_r($_SESSION);
 	
 	
 

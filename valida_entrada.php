@@ -16,6 +16,7 @@
 				switch ($_SESSION['grpuser']) {
 					case 'CON':
 						$_SESSION['cod_contratista'] = $pro;
+						asignar_empresa_cliente();
 					break;
 
 					case 'CUA':
@@ -28,20 +29,8 @@
 								$_SESSION['cod_contratista'] = $data["cod_contratista"];
 							}
 						}
-
-						if($_SESSION['cod_contratista']){ // obteniendo el codigo empresa cliente
-							// echo 
-							$sql="SELECT * 
-							FROM clientes 
-							WHERE cod_contratista=$_SESSION[cod_contratista]";
-							$res = mysqli_query($conexion, $sql);
-							$rows = mysqli_num_rows($res);
-							if ($rows > 0) {
-								while($data = mysqli_fetch_array($res)) {
-									$_SESSION['empresa_cliente'] = $data["codigo"];
-								}
-							}
-						}
+						asignar_empresa_cliente();
+						
 					break;
 				}
 				mysqli_close($conexion); // cierra la conexion
@@ -52,6 +41,23 @@
 			// echo("Error  " . mysqli_error($conexion));
 			mysqli_close($conexion); // cierra la conexion
 	 	    header('Location: /');
+		}
+	}
+
+	function asignar_empresa_cliente(){
+		global $conexion;
+		if($_SESSION['cod_contratista']){ // obteniendo el codigo empresa cliente
+			// echo 
+			$sql="SELECT * 
+			FROM clientes 
+			WHERE cod_contratista=$_SESSION[cod_contratista]";
+			$res = mysqli_query($conexion, $sql);
+			$rows = mysqli_num_rows($res);
+			if ($rows > 0) {
+				while($data = mysqli_fetch_array($res)) {
+					$_SESSION['empresa_cliente'] = $data["codigo"];
+				}
+			}
 		}
 	}
 ?>
