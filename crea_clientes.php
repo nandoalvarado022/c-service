@@ -1,7 +1,7 @@
 <?php 
 $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; ?>
 <?php include "conex.php";
-include "functions.php";
+//include "functions.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@ include "functions.php";
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
 				  		<label for="Nombre">Empresa</label>
-						<select id="cmb_empresa_cliente" class="form-control" name="">%
+						<select id="cmb_empresa_cliente" class="form-control" name="empresa">%
 							<option value="">Seleccione</option>';
 							<?php print cmb_empresa_cliente();?>
 						</select>

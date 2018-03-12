@@ -282,14 +282,16 @@ switch ($causa) {
 	break;
 
 	case 'cliente':		
-	   	$sql = "select nombre from clientes where cod_contratista = $_SESSION[cod_contratista] and codigo = $cod_cliente"; // cod_cliente es la variable que viene
+	   	// $sql = "select nombre from clientes where cod_contratista = $_SESSION[cod_contratista] and codigo = $cod_cliente"; // cod_cliente es la variable que viene
+	   	$sql = "select * from servicios where id = $busca_cliente"; // cod_cliente es la variable que viene
 	   	$resulta = mysqli_query($conexion, $sql);
 	   	$rows = mysqli_num_rows($resulta);
 	   	if (!$rows > 0) {
 			echo '0';		  
 		} else {
-			while($nombre    = mysqli_fetch_array($resulta)) {
-				echo $cliente = $nombre[0];
+			while($nombre = mysqli_fetch_array($resulta)) {
+				// echo "<pre>"; print_r($nombre);
+				echo $cliente = $nombre["nombre"];
 			}
 		}	   
 	break;

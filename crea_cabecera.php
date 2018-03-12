@@ -1,7 +1,8 @@
 <?php // session_start();?>
 <?php // if($_SESSION['nomuser'] == "") header('Location: index.php');
-$cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; ?>
+?>
 <?php include "conex.php";
+$cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; 
 // echo "<pre>"; print_r($_SESSION); echo "</pre>";
 ?>
 <!DOCTYPE html>
@@ -116,9 +117,9 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 					if(this.value=="") return false;
 					$.ajax({
 						url: "ajax.php",
-						data: "causa=cliente&cod_cliente="+busca_cliente.value,
+						data: "causa=cliente&busca_cliente="+busca_cliente.value,
 						type: "GET",
-						async: false,
+						async: true,
 						beforeSend: function(){
 							cliente.value = "Consultando...";
 						},

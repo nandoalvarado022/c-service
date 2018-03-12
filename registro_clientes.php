@@ -1,5 +1,10 @@
 <?php
 include "conex.php";
+foreach($_POST as $nombre_campo => $valor){ 
+	$asignacion = "\$" . $nombre_campo . "='" . $valor . "';"; 
+	eval($asignacion); 
+ }
+/*
 if (isset ($_POST['nit'])) {
  	$wnit = $_POST['nit'];
  	$wnombre = $_POST['nombre'];
@@ -8,11 +13,12 @@ if (isset ($_POST['nit'])) {
  	$rows = mysqli_num_rows($resulta);
  	if ($rows > 0) {  
 		header('Location: entro.php?msg=No se pudo crear el cliente, contacte al administrador.');
-	} else {
-		$inserta =  "INSERT INTO clientes VALUES ('$wnit', '$wnombre', 1, null, $_SESSION[cod_contratista])";
-		if (mysqli_query($conexion, $inserta)) {
-			header('Location: entro.php?msg=Registro con exito.');
+	} else {*/
+		$sql =  "INSERT INTO servicios(id, nombre, empresa) VALUES ('$nit', '$nombre', $empresa)";
+		if (mysqli_query($conexion, $sql)) {
+			header('Location: entro.php?msg=Registro con éxito.');
 		}
+		/*
  	}
-}		
+}		*/
 ?>
