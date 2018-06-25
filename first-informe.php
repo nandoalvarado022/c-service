@@ -134,7 +134,7 @@
 								<tr>
 									<td>#<?php print $index?></td>
 									<td>
-										<a href="print_excel_servicio.php?codigo_documento=<?php print $data[codigo_documento]?>" target="_BLANK">
+										<a href="print_excel_servicio.php?codigo_documento=<?php print $data['codigo_documento']?>" target="_BLANK">
 											<span class="glyphicon glyphicon-list-alt"></span>
 											Descargar archivo
 										</a>

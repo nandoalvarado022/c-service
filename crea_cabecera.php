@@ -86,7 +86,7 @@ $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratist
 
 				<label for="idservicio">Descripción</label>
 				<div>
-					<input type="text" class="form-control" name="idservicio" placeholder="Digite resumen breve de la actividad" /> 
+					<input type="text" class="form-control" name="descripcion" placeholder="Digite resumen breve de la actividad" /> 
 				</div>
 				
 				<div style="margin: 20px 0;">

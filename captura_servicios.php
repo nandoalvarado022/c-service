@@ -4,7 +4,7 @@ include "conex.php";
 		$asignacion = "\$" . $nombre_campo . "='" . $valor . "';"; 
 		eval($asignacion); 
 	}
-// echo "<pre>"; print_r($_POST); echo "</pre>";
+echo "<pre>"; print_r($_POST); echo "</pre>";
 ?>
 <script>
 	function cambiaProducto(oSelect){
@@ -21,12 +21,12 @@ include "conex.php";
 		<div class="container">
 
 			<form style="display: none;">
-				<input value ="<?php echo $_POST[busca_contratista]?>" name="busca_contratista">
-				<input value ="<?php echo $_POST[busca_cuadrilla]?>" name="busca_cuadrilla">
-				<input value ="<?php echo $_POST[direccion]?>" name="direccion">
-				<input value ="<?php echo $_POST[busca_cliente]?>" name="idservicio"> 
-				<input value ="<?php echo $_POST[fecha]?>" name="fecha"> 
-				<input value ="<?php echo $_POST[idservicio]?>" name="descripcion"> 
+				<input value ="<?php echo $_POST['busca_contratista']?>" name="busca_contratista">
+				<input value ="<?php echo $_POST['busca_cuadrilla']?>" name="busca_cuadrilla">
+				<input value ="<?php echo $_POST['direccion']?>" name="direccion">
+				<input value ="<?php echo $_POST['id_servicio']?>" name="id_servicio"> 
+				<input value ="<?php echo $_POST['fecha']?>" name="fecha"> 
+				<input value ="<?php echo $_POST['descripcion']?>" name="descripcion">
 			</form>
 
 			<header>
@@ -95,7 +95,7 @@ include "conex.php";
 
 					<tr>
 						<th>Descripción</th>
-						<td><?php echo $_POST["idservicio"]?></td>
+						<td><?php echo $_POST["descripcion"]?></td>
 					</tr>
 
 					<tr>
@@ -440,7 +440,7 @@ include "conex.php";
 						tblExport: htmlExport,
 						causa: "guardando_tabla_servicios_html_excel",
 						contratista: $("[name='busca_contratista']").val(),
-						codigo_servicio: $("[name='idservicio']").val()
+						id_servicio: $("[name='id_servicio']").val()
 					},
 					success:function(res){
 						codigo_html_to_excel = JSON.parse(res).codigo_html_to_excel;

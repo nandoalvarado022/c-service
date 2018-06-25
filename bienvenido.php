@@ -1,13 +1,14 @@
 <div id="bienvenido">
 	<?php
-	// print_r($_SESSION);
 	if($_SESSION['nomuser']=="") header('Location: /softwareydiseno?error=Debe iniciar sessión.');?>
 	<div class="row" id="menu_principal">
-		<div class="col-xs-4" style="color: white;"><b>C-SERVICES</b></div>
+		<div class="col-xs-4" style="color: white;">
+		<span style="font-size: 20px" class="glyphicon glyphicon-home"></span>
+		<b>C-SERVICES</b></div>
 		<div class="col-xs-6">
 			
 			<span class="text-uppercase" style="color: white;">
-				<span style="font-size: 20px" class="glyphicon glyphicon-user"></span>
+				<span style="margin: 0 10px 0 0;" class="glyphicon glyphicon-user"></span>
 				<span class="texto"><?php print $_SESSION['nomuser']?></span>
 			</span>
 		</div>

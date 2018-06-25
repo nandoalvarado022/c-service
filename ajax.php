@@ -52,6 +52,13 @@ function asd_cmb_empresa_cliente($cec){
 
 $causa=(isset($causa)) ? $causa : "";
 switch ($causa) {
+	case 'terminarProyecto':
+		$sql="UPDATE servicios 
+		SET estado=0
+		WHERE id=$id_servicio";
+		$resulta = mysqli_query($conexion, $sql);
+	break;
+
 	case 'itemPadreCon':
 		$sql="INSERT INTO item_padre(nombre) VALUES ('$nombre')";
 		$resulta = mysqli_query($conexion, $sql);
@@ -201,55 +208,55 @@ switch ($causa) {
 	break;
 
 	case 'guardando_servicio':
-		echo $sql =  "INSERT INTO servicios_cab VALUES (null, '$idservicio', $codigo_html_to_excel, '$busca_cuadrilla', '$busca_contratista', '$fecha', '$direccion', '$vlrtotal', null, '$descripcion', '$observaciones')";
+		echo $sql =  "INSERT INTO servicios_cab VALUES (null, '$id_servicio', $codigo_html_to_excel, '$busca_cuadrilla', '$busca_contratista', '$fecha', '$direccion', '$vlrtotal', null, '$descripcion', '$observaciones')";
 		// echo "<br>";
 	
-		// if (!mysqli_query($conexion, $sql)) {
-		// 	echo "Error: " . mysqli_error($conexion);
-		// }
+		if (!mysqli_query($conexion, $sql)) {
+			echo "Error: " . mysqli_error($conexion);
+		}
 
 		// echo "<pre>"; print_r(json_decode($items)); echo "</pre>";
 		foreach (json_decode($items) as $key => $value) {
-			$sql = "INSERT into servicios_det values (null, '$idservicio', $codigo_html_to_excel, '$value->id_item', '".str_replace("<br>", " ", $value->cantidad)."', ".str_replace(",", ".", str_replace(".", "", $value->vlrtotal)).", null)";
+			$sql = "INSERT into servicios_det values (null, '$id_servicio', $codigo_html_to_excel, '$value->id_item', '".str_replace("<br>", " ", $value->cantidad)."', ".str_replace(",", ".", str_replace(".", "", $value->vlrtotal)).", null)";
 			$resulta = mysqli_query($conexion, $sql);
-		  	// echo("Error description: " . mysqli_error($resulta));
-
+		  	echo("Error description: " . mysqli_error($resulta));
 		}
 	break;
 
 	case 'guardando_tabla_servicios_html_excel':
-		$sql = "insert into tbl_html_to_excel values(null, '".$codigo_servicio."', '".$tblExport."', null)";
-		$resulta = mysqli_query($conexion, $sql);
 		// echo 
+		$sql = "insert into tbl_html_to_excel(codigo_servicio, html) values('".$id_servicio."', '".$tblExport."')";
+		$resulta = mysqli_query($conexion, $sql);
 		$codigo_html_to_excel = mysqli_insert_id($conexion);
 		// enviando el correo        
-        // echo 
-        $sql = "SELECT mail_1, mail_2, mail_3, mail_4 FROM contratistas where codigo=".$contratista;
-        $resulta = mysqli_query($conexion, $sql) or die ("error en consulta contratistas") ;
-        $rows = mysqli_num_rows($resulta);
-	    if ($rows > 0) {
-	       	while($res = mysqli_fetch_array($resulta)) {
-		       	for ($count=0; $count <= 3 ; $count++) {
-		       		// echo "<br>Enviado a:";
-		       		// echo $res[$count];
-		       		$mensa = 'Sr Contratista usted puede visualizar el archivo de excel en el siguiente vinculo
-		       		<a href="http://clsolutions.com.co/c-services/print_excel_servicio.php?codigo_documento='.$codigo_html_to_excel.'">
-		       		http://clsolutions.com.co/c-services/print_excel_servicio.php?codigo_documento='.$codigo_html_to_excel."
-		       		</a>";
-		       		$cabeceras = 'MIME-Version: 1.0' . "\r\n";
-					$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-					$cabeceras .= 'From: Abarreto <info@softwareydiseno.com>' . "\r\n";
-					// Cabeceras adicionales
-					// $cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-					// $cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
-					// $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
-					// $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
-		       		mail($res[$count], "Archivo Excel", $mensa, $cabeceras);
-		       		// mail("nandoalvarado022@gmail.com", "Archivo Excel", $mensa, $cabeceras); break;
-		       	}
-	       	}
-	    }
-	    print json_encode(array('codigo_html_to_excel' => $codigo_html_to_excel));
+			// echo 
+			// $sql = "SELECT mail_1, mail_2, mail_3, mail_4 FROM contratistas where codigo=".$contratista;
+			// $resulta = mysqli_query($conexion, $sql) or die ("error en consulta contratistas") ;
+			// $rows = mysqli_num_rows($resulta);
+			// if ($rows > 0) {
+			// 	while($res = mysqli_fetch_array($resulta)) {
+			// 		for ($count=0; $count <= 3 ; $count++) {
+			// 			// echo "<br>Enviado a:";
+			// 			// echo $res[$count];
+			// 			$mensa = 'Sr Contratista usted puede visualizar el archivo de excel en el siguiente vinculo
+			// 			<a href="http://clsolutions.com.co/c-services/print_excel_servicio.php?codigo_documento='.$codigo_html_to_excel.'">
+			// 			http://clsolutions.com.co/c-services/print_excel_servicio.php?codigo_documento='.$codigo_html_to_excel."
+			// 			</a>";
+			// 			$cabeceras = 'MIME-Version: 1.0' . "\r\n";
+			// 			$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			// 			$cabeceras .= 'From: Abarreto <info@softwareydiseno.com>' . "\r\n";
+			// 			// Cabeceras adicionales
+			// 			// $cabeceras .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+			// 			// $cabeceras .= 'From: Recordatorio <cumples@example.com>' . "\r\n";
+			// 			// $cabeceras .= 'Cc: birthdayarchive@example.com' . "\r\n";
+			// 			// $cabeceras .= 'Bcc: birthdaycheck@example.com' . "\r\n";
+			// 			mail($res[$count], "Archivo Excel", $mensa, $cabeceras);
+			// 			// mail("nandoalvarado022@gmail.com", "Archivo Excel", $mensa, $cabeceras); break;
+			// 		}
+			// 	}
+			// }
+		// enviando el correo        
+		print json_encode(array('codigo_html_to_excel' => $codigo_html_to_excel));
 	break;
 
 	case 'item_hijo':

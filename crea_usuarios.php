@@ -40,7 +40,7 @@ print_r($_SESSION);
 					</div>
 
 					<div class="margin-bottom col-md-6 col-md-offset-3">
-						<input type="text" name="nit" placeholder="Nit" class="form-control">
+						<input type="text" name="nit" placeholder="NIT" class="form-control">
 					</div>
 
 					<div class="margin-bottom col-md-6 col-md-offset-3">

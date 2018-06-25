@@ -21,7 +21,7 @@
 			// cod_contratista es empresa padre
 			$empresa_padre_cod=$_SESSION["coduser"];
 			$query="INSERT INTO clientes (nombre, estado, empresa_padre) VALUES ('$nombre', 1, $empresa_padre_cod)";
-			if(mysqli_query($conexion, $query)) header('Location: entro.php?msg=Se creo la empresa cliente con exito!.');
+			if(mysqli_query($conexion, $query)) header('Location: entro.php?msg=Se creo la empresa cliente con exito.');
 			else header('Location: entro.php?msg=Ocurrio un error, por favor comunicarse con el administrador.');
 		break;
 

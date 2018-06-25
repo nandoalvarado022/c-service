@@ -13,7 +13,7 @@
      <div class="group">
          <form action="registro_contratistas.php" method="POST">
               <h2><em>Registro De Contratistas</em></h2>  
-                  <label for="Nit">Nit o Cedula <span><em>(requerido)</em></span></label>
+                  <label for="Nit">NIT o Cedula <span><em>(requerido)</em></span></label>
                   <input type="text" name="nit" class="form-input" required/>   
                   <label for="Nombre">Nombre <span><em>(requerido)</em></span></label>
                   <input type="text" name="nombre" class="form-input" required/>  

@@ -2,7 +2,7 @@
 // print session_status();
 // if (session_status()!=1){ session_start();}
 if(isset($_SESSION["grpuser"])){
-    print_r($_SESSION);
+    // print_r($_SESSION);
 }
 // if($_SESSION['grpuser']!="ADM") header('Location: index.php?msg=No tiene permiso para ver esto.');
 $cod_contratista=isset($_SESSION["cod_contratista"]) ? $_SESSION["cod_contratista"] : ""; ?>

@@ -12,11 +12,13 @@
 			 	$_SESSION['nomuser'] = $nombre[0];
 				$_SESSION['grpuser'] = $nombre[1];
 				$_SESSION['coduser'] = $pro;
-
+				$_SESSION['empresa_cliente'] = "";
+				$urlRedirection="crea_cabecera.php";
 				switch ($_SESSION['grpuser']) {
 					case 'CON':
 						$_SESSION['cod_contratista'] = $pro;
 						asignar_empresa_cliente();
+						$urlRedirection="entro.php";
 					break;
 
 					case 'CUA':
@@ -30,12 +32,10 @@
 							}
 						}
 						asignar_empresa_cliente();
-						
 					break;
 				}
 				mysqli_close($conexion); // cierra la conexion
-				// echo "<pre>"; print_r($_SESSION); echo "</pre>";
-		 		header('Location: crea_cabecera.php');
+		 		header('Location: '.$urlRedirection);
 			}
 		} else{
 			// echo("Error  " . mysqli_error($conexion));
