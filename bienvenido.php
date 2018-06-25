@@ -1,6 +1,4 @@
 <div id="bienvenido">
-	<?php
-	if($_SESSION['nomuser']=="") header('Location: /softwareydiseno?error=Debe iniciar sessión.');?>
 	<div class="row" id="menu_principal">
 		<div class="col-xs-4" style="color: white;">
 		<span style="font-size: 20px" class="glyphicon glyphicon-home"></span>
