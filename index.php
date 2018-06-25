@@ -4,7 +4,7 @@ session_start();?>
 <html lang="es">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<?php include "header.php";?>
+		<?php // include "header.php";?>
 	</head>
 	<body id="inicio_session">
 		<div class="container">
