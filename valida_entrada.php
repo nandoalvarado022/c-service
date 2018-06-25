@@ -35,13 +35,12 @@
 					break;
 				}
 				mysqli_close($conexion); // cierra la conexion
-				echo $urlRedirection;
-				//  header('Location: '.$urlRedirection);
+		 		header('Location: '.$urlRedirection);
 			}
 		} else{
-			echo("Error  " . mysqli_error($conexion));
+			// echo("Error  " . mysqli_error($conexion));
 			mysqli_close($conexion); // cierra la conexion
-	 	    // header('Location: /');
+	 	    header('Location: /');
 		}
 	}
 
