@@ -1,5 +1,5 @@
 <?php
-	$url_base = "http://www.clsolutions.com.co/cservices/";
+	$url_base = "./cservices/";
 	session_start();
 	include "functions.php";
 	// $conexion = mysqli_connect('www.clsolutions.com.co', 'id2431471_proyec', 'id2431471_proyec', 'id2431471_recursos');
